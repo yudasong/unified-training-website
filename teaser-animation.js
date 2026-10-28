@@ -7,7 +7,8 @@
   const PRETRAINING = 1.4830489990487605e19;
   const MAX_COMPUTE = 2.1533828137184055e19;
   const INTRO_FRACTION = .12;
-  const DURATION = 20000;
+  const DURATION = 10000;
+  const FIRST_STAGE_END = 400 / 3;
   // Coordinates from the unmodified pdftocairo conversion of teaser_reasoning.pdf.
   const PLOT = { left: 33.421875, end: 215.925034, top: 3.972656, bottom: 90.699219 };
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -44,8 +45,8 @@
     plotCursor.setAttribute('visibility', progress >= INTRO_FRACTION && progress < 1 ? 'visible' : 'hidden');
     // The left schedules are explanatory, rather than a fitted experimental trajectory.
     const mixtureX = progress < INTRO_FRACTION
-      ? 55 * progress / INTRO_FRACTION
-      : 55 + 345 * postPretraining;
+      ? FIRST_STAGE_END * progress / INTRO_FRACTION
+      : FIRST_STAGE_END + (400 - FIRST_STAGE_END) * postPretraining;
     mixtureClip.setAttribute('width', mixtureX);
     mixtureCursor.setAttribute('x1', mixtureX);
     mixtureCursor.setAttribute('x2', mixtureX);
@@ -55,7 +56,7 @@
     slider.setAttribute('aria-valuetext', `${Math.round(progress * 100)} percent; cumulative compute ${(compute / 1e19).toFixed(2)} times ten to the nineteenth FLOPs`);
     phaseLabel.textContent = progress < INTRO_FRACTION
       ? 'Pretraining (shown at accelerated speed)'
-      : progress < INTRO_FRACTION + (1 - INTRO_FRACTION) * (68 / 345)
+      : progress < INTRO_FRACTION + (1 - INTRO_FRACTION) * .5
         ? 'Staged: midtraining · Unified: pretraining and midtraining data'
         : progress < 1
           ? 'Staged: RL · Unified: midtraining data and RL generations'
