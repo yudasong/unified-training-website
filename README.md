@@ -6,7 +6,7 @@ Live site: https://yudasong.github.io/unified-training-website/
 
 ## Edit and preview
 
-The site is a static research article in HTML and CSS. Edit `index.html` for
+The site is a static research article in HTML, CSS, and vanilla JavaScript. Edit `index.html` for
 the article and `style.css` for presentation.
 All figures are vector SVGs in `assets/`; the paper is `assets/paper.pdf`.
 
@@ -29,5 +29,19 @@ viewing. No curves, colors, panels, or values are redrawn. The conceptual panel
 is a vector crop of Figure 1 from `assets/paper.pdf`.
 
 `assets/figure-sources.json` records source paths, conversion details, and hashes.
-Wide figures preserve their full panel arrangement; narrow screens can scroll
-horizontally or open the SVG/PDF at full size.
+Figures preserve their full panel arrangement and scale within the article column.
+The contents navigation stays to the left on desktop and becomes an inline list
+on narrow screens.
+
+## Opening animation
+
+`teaser-animation.js` reveals the four original curves in
+`assets/teaser_reasoning.svg` as cumulative compute increases. It does not
+reconstruct or interpolate the plotted results. The left schedules illustrate
+data-source timing; their proportions and phase lengths are schematic.
+
+The module uses `teaser-animation.css`; its HTML is embedded in `index.html`
+and retained in `teaser-animation.html` for editing. Keep both copies in sync.
+`assets/teaser-animation-data.json` records the original plot and compute bounds.
+The animation includes pause, replay, and scrubbing controls, honors reduced
+motion, pauses out of view, and shows the complete original figure without JS.

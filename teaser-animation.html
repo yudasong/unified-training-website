@@ -1,0 +1,66 @@
+<figure class="training-animation" id="training-animation" aria-labelledby="training-animation-caption">
+  <div class="training-animation-panels">
+    <div class="training-mixtures">
+      <p class="training-panel-heading">Illustrative data schedules</p>
+      <svg class="training-mixture-svg" viewBox="0 0 400 218" role="img" aria-labelledby="training-mixtures-title training-mixtures-description">
+        <title id="training-mixtures-title">Staged and unified data schedules</title>
+        <desc id="training-mixtures-description">Staged training uses pretraining, midtraining, and reinforcement learning data in successive phases. Unified training mixes midtraining data with pretraining data and later with RL generations. The proportions and phase lengths are schematic.</desc>
+        <defs>
+          <clipPath id="training-mixture-reveal"><rect data-mixture-reveal x="0" y="0" width="400" height="218"/></clipPath>
+        </defs>
+        <text x="0" y="20" class="training-method staged">Staged training</text>
+        <text x="0" y="122" class="training-method unified">Unified training</text>
+        <g class="training-future">
+          <rect x="0" y="32" width="400" height="55"/>
+          <rect x="0" y="134" width="400" height="55"/>
+        </g>
+        <g clip-path="url(#training-mixture-reveal)">
+          <rect x="0" y="32" width="55" height="55" class="data-pretraining"/>
+          <rect x="55" y="32" width="68" height="55" class="data-midtraining"/>
+          <rect x="123" y="32" width="277" height="55" class="data-rl"/>
+          <rect x="0" y="134" width="55" height="55" class="data-pretraining"/>
+          <rect x="55" y="134" width="68" height="18" class="data-midtraining"/>
+          <rect x="55" y="152" width="68" height="37" class="data-pretraining"/>
+          <rect x="123" y="134" width="277" height="13" class="data-midtraining"/>
+          <rect x="123" y="147" width="277" height="42" class="data-rl"/>
+          <g class="training-band-labels" aria-hidden="true">
+            <text x="27.5" y="65">Pretrain</text>
+            <text x="89" y="65">Midtrain</text>
+            <text x="261.5" y="65" class="on-blue">RL</text>
+            <text x="27.5" y="167">Pretrain</text>
+            <text x="89" y="176">Pretrain</text>
+            <text x="261.5" y="175" class="on-blue">RL</text>
+          </g>
+        </g>
+        <g class="training-band-outlines" aria-hidden="true">
+          <rect x=".5" y="32.5" width="399" height="54"/>
+          <rect x=".5" y="134.5" width="399" height="54"/>
+          <path d="M55 32 V87 M123 32 V87 M55 134 V189 M123 134 V189"/>
+        </g>
+        <line data-mixture-cursor x1="400" x2="400" y1="29" y2="193" class="training-mixture-cursor" visibility="hidden"/>
+        <text x="0" y="213" class="training-schematic-label">Schematic data proportions</text>
+        <text x="400" y="213" text-anchor="end" class="training-schematic-label">Training progresses →</text>
+      </svg>
+      <div class="training-data-legend" aria-label="Data sources">
+        <span><i class="data-pretraining"></i>Pretraining data</span>
+        <span><i class="data-midtraining"></i>Midtraining data</span>
+        <span><i class="data-rl"></i>RL generations</span>
+      </div>
+    </div>
+    <div class="training-performance">
+      <p class="training-panel-heading">Best observed performance</p>
+      <div class="training-performance-chart" data-training-plot>
+        <img src="assets/teaser_reasoning.svg" width="222" height="133" alt="The original Figure 1 plot: best observed reasoning accuracy and coverage within each compute budget. Unified training reaches higher accuracy and coverage at larger budgets."/>
+      </div>
+    </div>
+  </div>
+  <div class="training-animation-controls" hidden>
+    <button type="button" data-training-toggle aria-label="Play training animation">Play</button>
+    <button type="button" data-training-restart aria-label="Restart training animation">Restart</button>
+    <label class="training-progress-label" for="training-progress">Training progress</label>
+    <input id="training-progress" data-training-progress type="range" min="0" max="1000" value="1000" step="1" aria-label="Training progress"/>
+    <output data-training-compute for="training-progress">2.15 × 10¹⁹ FLOPs</output>
+  </div>
+  <p class="training-animation-phase" data-training-phase hidden>Training complete</p>
+  <figcaption id="training-animation-caption"><strong>One learning rule, changing data.</strong> Staged training separates the data sources into successive phases; unified training allows them to overlap. The left panel illustrates the schedules, with schematic proportions and timing. The right panel shows the best accuracy (one attempt) and coverage (16 attempts) observed within each compute budget across the tested configurations on a reasoning task. Compute includes pretraining, midtraining, and RL; the initial pretraining period is compressed in the animation.</figcaption>
+</figure>
