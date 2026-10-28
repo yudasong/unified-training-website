@@ -6,8 +6,8 @@ Live site: https://yudasong.github.io/unified-training-website/
 
 ## Edit and preview
 
-The site is plain HTML, CSS, and JavaScript. Edit `index.html` for the article,
-`style.css` for presentation, and `script.js` for the table-of-contents behavior.
+The site is a static research article in HTML and CSS. Edit `index.html` for
+the article and `style.css` for presentation.
 All figures are vector SVGs in `assets/`; the paper is `assets/paper.pdf`.
 
 Preview locally with:
