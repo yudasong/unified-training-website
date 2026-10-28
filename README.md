@@ -21,6 +21,14 @@ Open http://127.0.0.1:8765. No installation or build step is needed.
 GitHub Pages publishes the repository root on `main`. Push changes to update
 the website. `.nojekyll` keeps the site as static files.
 
+## Writing
+
+The audience is ML and LLM researchers. Retain the paper’s terminology and reuse
+its wording where it already works. Shorten derivations and implementation detail
+without replacing precise concepts with lay explanations. Results sections should
+explain the motivation, comparison, finding, and implication, including material
+tradeoffs. Avoid slogans, a long literature review, and narrating every plotted value.
+
 ## Figure fidelity
 
 The article reuses the paper's original figures. PDFs in `assets/` are exact

@@ -58,5 +58,5 @@
     <output data-training-compute for="training-progress">2.15 × 10¹⁹ FLOPs</output>
   </div>
   <p class="training-animation-phase" data-training-phase hidden>Training complete</p>
-  <figcaption id="training-animation-caption">Staged training separates the data sources into successive phases; unified training allows them to overlap. The left panel illustrates the schedules, with schematic proportions and timing. The right panel shows the best accuracy (one attempt) and coverage (16 attempts) observed within each compute budget across the tested configurations on a reasoning task. Compute includes pretraining, midtraining, and RL; the initial pretraining period is compressed in the animation.</figcaption>
+  <figcaption id="training-animation-caption">Staged training uses data sources sequentially; unified training allows their distributions to overlap and evolve. The left panel illustrates these schedules, with schematic proportions and timing. The right panel reports the best observed accuracy (pass@1, solid) and coverage (pass@16, dashed) within each total compute budget across the tested unified and staged configurations. Compute includes pretraining, midtraining, and RL; the initial pretraining period is compressed in the animation.</figcaption>
 </figure>
