@@ -21,7 +21,13 @@ Open http://127.0.0.1:8765. No installation or build step is needed.
 GitHub Pages publishes the repository root on `main`. Push changes to update
 the website. `.nojekyll` keeps the site as static files.
 
-The plots summarize the paper's current results. The reasoning bars compare
-final accuracy at matched RL horizons; the compute plots compare the best
-observed checkpoints within total training budgets. Their selection conventions
-are explained in the article and figure captions.
+## Figure fidelity
+
+The article reuses the paper's original figures. PDFs in `assets/` are exact
+copies from the clean manuscript; SVGs are direct conversions for browser
+viewing. No curves, colors, panels, or values are redrawn. The conceptual panel
+is a vector crop of Figure 1 from `assets/paper.pdf`.
+
+`assets/figure-sources.json` records source paths, conversion details, and hashes.
+Wide figures preserve their full panel arrangement; narrow screens can scroll
+horizontally or open the SVG/PDF at full size.
