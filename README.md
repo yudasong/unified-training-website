@@ -2,7 +2,7 @@
 
 Research blog for **Training Foundation Models with a Single Algorithm**.
 
-Live site: https://yudasong.github.io/unified-training-website/
+Live site: https://yudasong.github.io/unified-training/
 
 ## Edit and preview
 
@@ -18,8 +18,18 @@ python3 -m http.server 8765 --bind 127.0.0.1
 
 Open http://127.0.0.1:8765. No installation or build step is needed.
 
-GitHub Pages publishes the repository root on `main`. Push changes to update
-the website. `.nojekyll` keeps the site as static files.
+The editable source remains in this repository. The public site is hosted in the
+`unified-training/` folder of `yudasong/yudasong.github.io` on its `master` branch.
+After committing and pushing source changes here, publish with:
+
+```bash
+python3 publish.py
+```
+
+The script copies only the site's static files into that project folder, commits
+any changes there, and pushes them. It leaves the rest of the personal site
+unchanged. The former `unified-training-website/` address redirects to the new URL,
+preserving query parameters and section anchors.
 
 ## Writing
 
