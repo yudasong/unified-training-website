@@ -29,7 +29,8 @@ h1 { font-size: 41px; line-height: 1.16; font-weight: 700; letter-spacing: -.75p
 sup { font-size: .65em; line-height: 0; vertical-align: super; margin-left: 2px; }
 .affiliations { display: flex; justify-content: center; flex-wrap: wrap; gap: 4px 18px; color: var(--muted); font-size: 12px; line-height: 1.6; margin: 0 0 6px; }
 .affiliations sup { margin: 0 2px 0 0; }
-.author-note { margin: 0; color: var(--muted); font-size: 11px; }
+.author-note { display: flex; justify-content: center; flex-wrap: wrap; gap: 3px 15px; margin: 0; color: var(--muted); font-size: 11px; }
+.author-note span { white-space: nowrap; }
 .resources { display: flex; justify-content: center; align-items: center; gap: 14px; font: 14px/1.5 var(--sans); margin-top: 19px; }
 .resources a { text-decoration: none; }
 .resources a:hover { text-decoration: underline; }

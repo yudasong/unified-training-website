@@ -12,7 +12,7 @@
   <link rel="canonical" href="https://yudasong.github.io/unified-training-website/">
   <title>Unified Training — Training Foundation Models with a Single Algorithm</title>
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=20261028c">
   <link rel="stylesheet" href="teaser-animation.css?v=20261028b">
 </head>
 <body>
@@ -21,14 +21,14 @@
     <header class="paper-header">
       <h1>Training Foundation Models<br class="title-break"> with a Single Algorithm</h1>
       <div class="authors" id="authors" aria-label="Authors and affiliations">
-        <p class="author-names"><span>Yuda Song<sup>1,*</sup></span><span>Alvin Zhang<sup>2,*</sup></span><span>Fahim Tajwar<sup>1,*</sup></span><span>Daman Arora<sup>1</sup></span><span>Jeff Schneider<sup>1</sup></span><span>Daniel Khashabi<sup>2</sup></span><span>Ruslan Salakhutdinov<sup>1</sup></span><span>J. Andrew Bagnell<sup>1,3</sup></span><span>Aarti Singh<sup>1</sup></span><span>Andrea Zanette<sup>1</sup></span></p>
+        <p class="author-names"><span>Yuda Song<sup>1,*,†</sup></span><span>Alvin Zhang<sup>2,*</sup></span><span>Fahim Tajwar<sup>1,*</sup></span><span>Daman Arora<sup>1</sup></span><span>Jeff Schneider<sup>1</sup></span><span>Daniel Khashabi<sup>2</sup></span><span>Ruslan Salakhutdinov<sup>1</sup></span><span>J. Andrew Bagnell<sup>1,3,‡</sup></span><span>Aarti Singh<sup>1,‡</sup></span><span>Andrea Zanette<sup>1,‡</sup></span></p>
         <p class="affiliations"><span><sup>1</sup>Carnegie Mellon University</span><span><sup>2</sup>Johns Hopkins University</span><span><sup>3</sup>Aurora Innovation</span></p>
-        <p class="author-note"><sup>*</sup>Equal contribution</p>
+        <p class="author-note"><span><sup>*</sup>Equal contribution</span><span><sup>†</sup>Project lead</span><span><sup>‡</sup>Equal advising</span></p>
       </div>
-      <nav class="resources" aria-label="Project resources"><a href="assets/paper.pdf">Paper</a><span aria-hidden="true">·</span><a href="https://huggingface.co/sfanm/unified-training">Models on Hugging Face</a></nav>
+      <nav class="resources" aria-label="Project resources"><a href="assets/paper.pdf">Paper</a><span aria-hidden="true">·</span><a href="https://github.com/yudasong/unified-training">Code</a><span aria-hidden="true">·</span><a href="https://huggingface.co/sfanm/unified-training">Models on Hugging Face</a></nav>
     </header>
 
-      <nav class="article-contents" aria-label="Article contents"><span>Contents</span><a href="#overview">Overview</a><a href="#one-rule">Formulation</a><a href="#same-data">Reasoning</a><a href="#compute">Compute</a><a href="#retention">Retention</a><a href="#mixtures">Data mixtures</a><a href="#schedules">Schedules</a><a href="#next-task">Continual learning</a><a href="#looking-ahead">Further analyses</a></nav>
+      <nav class="article-contents" aria-label="Article contents"><span>Contents</span><a href="#overview">Overview</a><a href="#one-rule">Formulation</a><a href="#same-data">Reasoning</a><a href="#compute">Compute</a><a href="#retention">Retention</a><a href="#mixtures">Data mixtures</a><a href="#schedules">Schedules</a><a href="#next-task">Continual learning</a><a href="#looking-ahead">Future directions</a></nav>
 
     <article id="article">
       <div id="overview">
@@ -188,15 +188,16 @@
         <p>The controlled experiment shows a related effect: the staged model has higher Base accuracy before RL than any unified initialization, yet the best unified models outperform it after RL. Together, these results show that immediate benchmark accuracy can rank training procedures differently from performance after subsequent learning. Unified training can provide a better starting point for continual learning even when its initial accuracy on the new task is lower.</p>
       </section>
 
+      <p>The paper also includes analyses of loss normalization, MaxRL versus REINFORCE, and KL regularization as an alternative to mixing midtraining data.</p>
+
       <section id="looking-ahead">
-        <h2><span class="section-number">8.</span> Additional analyses and open questions</h2>
-        <p>The paper includes several analyses of the objective and data choices. Comparing the shared token-mean loss with separately normalized midtraining and RL losses shows that the alternative can be competitive or better in some settings, but its preferred coefficient varies across tasks, initializations, and mixtures. Within unified training, replacing MaxRL with REINFORCE also changes the balance between mathematical accuracy, coverage, and retention. The common formulation accommodates these choices; it does not make them empirically interchangeable.</p>
-        <p>We also test whether KL regularization toward the base model reproduces the benefits of mixing midtraining data. Stronger penalties reduce deterioration in held-out corpus loss, but the strongest tested penalty substantially reduces mathematical accuracy and coverage. None of the tested penalties reproduces unified training’s combination of mathematical performance, corpus retention, and SciQ and MMLU accuracy, although some KL-regularized runs perform better on individual coding metrics.</p>
-        <p>A central open question is how to select mixtures and schedules systematically. Our experiments reveal tradeoffs and useful allocations, but do not establish scaling laws or a generally optimal schedule. Larger models, broader data budgets, and joint multitask RL are needed to determine how these findings depend on scale and interactions among tasks. Some staged and unified comparisons also differ in their optimization and generation procedures; the zero-mixing ablation controls the implementation when measuring the contribution of adding midtraining data.</p>
-        <p>The empirical results motivate evaluating foundation-model training as a coupled learning process. Data choices affect task performance, retention, and the ability to learn from later data and rewards. A common likelihood formulation and training system allow these effects to be studied together, with the aim of developing predictive principles for allocating data and compute throughout training.</p>
+        <h2><span class="section-number">8.</span> Future directions</h2>
+        <p>The next step is to develop predictive principles for choosing data mixtures and schedules. Our experiments identify useful allocations, but do not yet tell us how the preferred mixture changes with model scale, corpus size, or compute budget. Studying these dimensions jointly could help predict when to reuse static data, when to spend compute generating new responses, and how their relative contributions should evolve during training. Such predictions should account for generation and optimization costs, and for the tradeoffs among accuracy, coverage, and retention.</p>
+        <p>Data allocation and optimization should also be studied together. As the mixture evolves, the distribution being optimized changes; how learning rates and other optimization choices should respond remains an open question. Joint multitask RL introduces further interactions, since tasks can progress at different rates and either support or interfere with one another. An important direction is to adapt the allocation of static data and generated experience to progress on each task, while evaluating the consequences for the model’s broader capabilities.</p>
+        <p>Finally, training decisions should be assessed by their effects on subsequent learning. Our continual-learning results show that a model with lower initial task accuracy can become a stronger model after adaptation. Longer task sequences would test whether this advantage persists, how it depends on earlier mixtures, and whether it comes at the expense of previously acquired capabilities. The broader goal is to understand how data and compute should evolve over the lifetime of a foundation model, supporting both the capabilities it has already acquired and those it has yet to learn.</p>
       </section>
     </article>
-    <footer><p>Full results and methods: <a href="assets/paper.pdf">Paper</a> · <a href="https://huggingface.co/sfanm/unified-training">Models</a></p><a href="#top">Back to top ↑</a></footer>
+    <footer><p>Full results and methods: <a href="assets/paper.pdf">Paper</a> · <a href="https://github.com/yudasong/unified-training">Code</a> · <a href="https://huggingface.co/sfanm/unified-training">Models</a></p><a href="#top">Back to top ↑</a></footer>
   </main>
   <script src="site.js" defer></script>
   <script src="teaser-animation.js?v=20261028b" defer></script>
