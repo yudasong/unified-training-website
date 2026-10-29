@@ -12,7 +12,7 @@
   <link rel="canonical" href="https://yudasong.github.io/unified-training-website/">
   <title>Unified Training — Training Foundation Models with a Single Algorithm</title>
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-  <link rel="stylesheet" href="style.css?v=20261028e">
+  <link rel="stylesheet" href="style.css?v=20261028f">
   <link rel="stylesheet" href="teaser-animation.css?v=20261028c">
 </head>
 <body>
@@ -111,14 +111,12 @@
         <p>The generation policy need not be identical to the model currently being optimized. For a fixed generator, the trainer fits that generator’s success-conditioned distribution. This recovers on-policy MaxRL when the generator is the current model; otherwise, it generally differs from the current model’s MaxRL gradient. The likelihood interpretation is retained in either case, allowing generation and optimization to proceed independently.</p>
         <p>The framework also accommodates other suitable RL objectives and continuous rewards through different targets and prompt weights. For example, binary-reward REINFORCE fits the same success-conditioned target as MaxRL but gives greater weight to prompts with higher success probability. The paper derives these extensions, including continuous-reward REINFORCE and TailRL. The common likelihood formulation applies to this family of updates; generation and reward evaluation remain responsible for constructing the RL training distribution.</p>
         <h3>A shared data format, loss, and trainer</h3>
-        <p>We implement the formulation with token sequences and nonnegative token weights:</p>
-        <ul>
-          <li><strong>Pretraining and midtraining.</strong> Corpus tokens receive unit weights.</li>
-          <li><strong>SFT.</strong> Prompts are masked, and the model trains on demonstration tokens.</li>
-          <li><strong>RL.</strong> Prompts are masked, and response weights depend on rewards and sampled pass rates.</li>
-        </ul>
-        <p>All sources share one data representation and one weighted cross-entropy loss.</p>
-        <p>For MaxRL, the generator samples multiple completions per prompt and estimates the pass rate p̂. Correct completions receive weight 1/p̂, and incorrect completions receive zero; prompts with no successful sample contribute no gradient. The trainer sums weighted token losses and normalizes by the total number of non-prompt tokens in the batch. The relative contributions of static and generated data consequently depend on the realized token mixture, rather than a fixed coefficient between separately normalized source losses.</p>
+        <p>We represent every example as a token sequence with nonnegative weights and train on all sources with the same weighted cross-entropy loss.</p>
+        <figure id="fig-token-weights" class="token-weights-figure">
+          <img src="assets/token_weights.svg" width="462" height="201" alt="The paper’s token-weight diagram: pretraining and midtraining assign weight 1 to every token. SFT assigns 0 to prompt tokens and 1 to response tokens. RL assigns 0 to prompt tokens and a weight A to response tokens.">
+          <figcaption><strong>A common data format.</strong> Each cell shows a token’s loss weight. Prompt tokens are masked for SFT and RL; <em>A</em> denotes the weight assigned to an RL response.</figcaption>
+        </figure>
+        <p>For MaxRL, the generator samples multiple completions per prompt and estimates the pass rate p̂. Correct completions receive weight <em>A</em> = 1/p̂, and incorrect completions receive zero; prompts with no successful sample contribute no gradient. The trainer sums weighted token losses and normalizes by the total number of non-prompt tokens in the batch. The relative contributions of static and generated data consequently depend on the realized token mixture, rather than a fixed coefficient between separately normalized source losses.</p>
         <p>A shared buffer connects generators and the trainer. Generators append evaluated responses using a recent copy of the model, while the trainer samples static data and RL generations from the buffer, updates the model, and periodically publishes its weights. Generation and optimization run asynchronously. Changing the training regime then amounts to changing the data supplied to this common system and how its mixture evolves.</p>
         <aside class="takeaway" id="takeaway-one-rule" aria-label="Section summary"><p>Static data and suitable RL updates can share one likelihood objective and trainer, making staged training a particular schedule within a broader family of data mixtures.</p></aside>
       </section>

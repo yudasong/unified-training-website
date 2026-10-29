@@ -51,5 +51,17 @@
       115
     ],
     "conversion": "pdftocairo SVG, with viewBox selecting the original conceptual panel"
+  },
+  {
+    "file": "token_weights.svg",
+    "source": "assets/paper.pdf page 5, Figure 2 right panel",
+    "source_sha256": "7e21bd93783dfafda1a4ea9ce7b60e8bf34878c7240ede3fd93b9895f25e82ce",
+    "crop_points": [
+      362,
+      77,
+      154,
+      67
+    ],
+    "conversion": "pdftocairo SVG, with viewBox selecting the original token-weight panel; geometry, labels, and colors unchanged"
   }
 ]

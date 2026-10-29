@@ -38,7 +38,8 @@ every plotted value.
 The article reuses the paper's original figures. PDFs in `assets/` are exact
 copies from the clean manuscript; SVGs are direct conversions for browser
 viewing. No curves, colors, panels, or values are redrawn. The conceptual panel
-is a vector crop of Figure 1 from `assets/paper.pdf`.
+is a vector crop of Figure 1, and the token-weight diagram is a vector crop of
+Figure 2, from `assets/paper.pdf`.
 
 `assets/figure-sources.json` records source paths, conversion details, and hashes.
 Figures preserve their full panel arrangement and scale within the article column.
