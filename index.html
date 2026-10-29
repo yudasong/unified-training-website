@@ -28,7 +28,7 @@
       <nav class="resources" aria-label="Project resources"><a href="assets/paper.pdf">Paper</a><span aria-hidden="true">·</span><a href="https://github.com/yudasong/unified-training">Code</a><span aria-hidden="true">·</span><a href="https://huggingface.co/sfanm/unified-training">Models on Hugging Face</a></nav>
     </header>
 
-      <nav class="article-contents" aria-label="Article contents"><span>Contents</span><a href="#overview">Overview</a><a href="#one-rule">Formulation</a><a href="#same-data">Full training pipeline</a><a href="#compute">Compute</a><a href="#retention">Retention</a><a href="#mixtures">RL specialization</a><a href="#schedules">Schedules</a><a href="#next-task">Continual learning</a><a href="#looking-ahead">Future directions</a></nav>
+      <nav class="article-contents" aria-label="Article contents"><span>Contents</span><a href="#overview">Overview</a><a href="#one-rule">Formulation</a><a href="#same-data">Full training pipeline</a><a href="#compute">Compute</a><a href="#retention">Retention</a><a href="#mixtures">Heterogeneous midtraining data</a><a href="#schedules">Schedules</a><a href="#next-task">Continual learning</a><a href="#looking-ahead">Future directions</a></nav>
 
     <article id="article">
       <div id="overview">
@@ -176,7 +176,7 @@
       </section>
 
       <section id="mixtures">
-        <h2><span class="section-number">5.</span> Specialization and retention during RL</h2>
+        <h2><span class="section-number">5.</span> Heterogeneous midtraining data</h2>
         <p>The controlled experiment uses task-specific reasoning traces. We next study a heterogeneous midtraining corpus to examine how unified training affects specialization on mathematics and capabilities beyond the RL task. We use a 0.76B-parameter model trained from scratch through pretraining and midtraining, then run mathematical RL on Math12K. An additional 240M-token corpus contains web text, mathematics, code, and reasoning traces. Staged training uses this corpus before RL; unified training mixes it into RL.</p>
         <p>We vary the constant midtraining proportion from zero to 5% while holding the number of mathematical RL updates fixed. The zero-mixing ablation uses the same asynchronous trainer as the nonzero mixtures, providing a control for adding midtraining data with the implementation held fixed. We evaluate mathematical accuracy and coverage alongside coding, general knowledge, and held-out corpus loss.</p>
         <figure id="fig-mixtures" class="paper-figure">
