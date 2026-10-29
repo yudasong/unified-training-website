@@ -1,7 +1,8 @@
 .training-animation {
   container-type: inline-size;
-  width: 100%;
-  margin: 29px 0 30px;
+  width: min(100%, max(600px, 85%));
+  max-width: 720px;
+  margin: 24px auto 28px;
   --training-pretraining: #dce4ed;
   --training-midtraining: #f0b66e;
   --training-rl: #2a78d6;

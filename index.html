@@ -13,7 +13,7 @@
   <title>Unified Training — Training Foundation Models with a Single Algorithm</title>
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="stylesheet" href="style.css?v=20261028d">
-  <link rel="stylesheet" href="teaser-animation.css?v=20261028b">
+  <link rel="stylesheet" href="teaser-animation.css?v=20261028c">
 </head>
 <body>
   <a class="skip-link" href="#article">Skip to article</a>
@@ -28,7 +28,7 @@
       <nav class="resources" aria-label="Project resources"><a href="assets/paper.pdf">Paper</a><span aria-hidden="true">·</span><a href="https://github.com/yudasong/unified-training">Code</a><span aria-hidden="true">·</span><a href="https://huggingface.co/sfanm/unified-training">Models on Hugging Face</a></nav>
     </header>
 
-      <nav class="article-contents" aria-label="Article contents"><span>Contents</span><a href="#overview">Overview</a><a href="#one-rule">Formulation</a><a href="#same-data">Data reuse</a><a href="#compute">Compute</a><a href="#retention">Retention</a><a href="#mixtures">Tradeoffs during RL</a><a href="#schedules">Schedules</a><a href="#next-task">Continual learning</a><a href="#looking-ahead">Future directions</a></nav>
+      <nav class="article-contents" aria-label="Article contents"><span>Contents</span><a href="#overview">Overview</a><a href="#one-rule">Formulation</a><a href="#same-data">Full training pipeline</a><a href="#compute">Compute</a><a href="#retention">Retention</a><a href="#mixtures">RL specialization</a><a href="#schedules">Schedules</a><a href="#next-task">Continual learning</a><a href="#looking-ahead">Future directions</a></nav>
 
     <article id="article">
       <div id="overview">
@@ -118,7 +118,7 @@
       </section>
 
       <section id="same-data">
-        <h2><span class="section-number">2.</span> Data reuse and generalization</h2>
+        <h2><span class="section-number">2.</span> Midtraining across the full training pipeline</h2>
         <p>We first study the full training pipeline in a controlled setting. We train a 124M-parameter model from scratch with a fixed 20B-token pretraining stream and a fixed 510M-token midtraining corpus of oracle-generated reasoning traces. The tasks are natural-language reasoning puzzles with verifiable answers and controllable difficulty. Midtraining demonstrates the underlying reasoning operations; RL introduces new combinations of these operations. This construction lets us examine how midtraining supports learning beyond the demonstrated patterns.</p>
         <p>Staged training uses pretraining, midtraining, and RL sequentially. Unified training mixes the reasoning corpus into the final part of pretraining and continues using it during RL. We vary the amount of midtraining data used in both parts of the pipeline while preserving the pretraining stream. Increasing the midtraining budget reuses the same corpus, so the comparison studies data reuse rather than access to additional examples.</p>
         <p>The evaluations distinguish task performance from generalization. In <strong>Base</strong>, puzzle sizes remain within the range represented in midtraining. <strong>Extended</strong> adds larger puzzles during RL and evaluates on held-out problems of those sizes. <strong>Extended generalization</strong> evaluates the same Extended models on still larger puzzles, absent from both midtraining and RL. Thus, Base and Extended test learning on the RL tasks, while Extended generalization tests performance beyond the training distribution.</p>
@@ -158,7 +158,7 @@
       </section>
 
       <section id="mixtures">
-        <h2><span class="section-number">5.</span> Accuracy, coverage, and retention during RL</h2>
+        <h2><span class="section-number">5.</span> Specialization and retention during RL</h2>
         <p>The controlled experiment uses task-specific reasoning traces. We next study a heterogeneous midtraining corpus to examine how unified training affects specialization on mathematics and capabilities beyond the RL task. We use a 0.76B-parameter model trained from scratch through pretraining and midtraining, then run mathematical RL on Math12K. An additional 240M-token corpus contains web text, mathematics, code, and reasoning traces. Staged training uses this corpus before RL; unified training mixes it into RL.</p>
         <p>We vary the constant midtraining proportion from zero to 5% while holding the number of mathematical RL updates fixed. The zero-mixing ablation uses the same asynchronous trainer as the nonzero mixtures, providing a control for adding midtraining data with the implementation held fixed. We evaluate mathematical accuracy and coverage alongside coding, general knowledge, and held-out corpus loss.</p>
         <figure id="fig-mixtures" class="paper-figure">
