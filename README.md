@@ -116,8 +116,17 @@ on narrow screens.
 
 `teaser-animation.js` reveals the four original curves in
 `assets/teaser_reasoning.svg` as cumulative compute increases. It does not
-reconstruct or interpolate the plotted results. The left schedules illustrate
-data-source timing; their proportions and phase lengths are schematic.
+reconstruct or interpolate the plotted results. Both panels advance using one
+cumulative compute budget. The end of staged midtraining aligns with the first
+staged pre-RL evaluation in the plot (the one-epoch configuration), and unified
+RL starts at its earlier pre-RL evaluation. The curves are envelopes across
+multiple configurations; the left panel is not one run underlying every point.
+Data proportions and the equal-width staged phases remain illustrative.
+Animation time is compressed during pretraining, and the two RL onsets are
+shown close together (23% and 28% of playback) to avoid exaggerating their
+small difference in cumulative compute. Their schematic positions are 235/400
+and 266.667/400. Both panels still reach the same compute value at each instant;
+the remaining time follows the plotted RL compute range.
 
 The module uses `teaser-animation.css`; its HTML is embedded in `index.html`
 and retained in `teaser-animation.html` for editing. Keep both copies in sync.

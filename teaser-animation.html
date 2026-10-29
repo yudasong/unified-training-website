@@ -17,9 +17,9 @@
       >
         <title id="training-mixtures-title">Staged and unified data schedules</title>
         <desc id="training-mixtures-description">
-          Staged training uses pretraining, midtraining, and reinforcement learning data in successive phases.
-          Unified training mixes midtraining data with pretraining data and later with RL generations.
-          The proportions and phase lengths are schematic.
+          Staged training uses pretraining, midtraining, and reinforcement learning data in separate phases.
+          Unified training enables a mixture of pretraining, midtraining and RL generations to be used simultaneously.
+          The proportions and phase lengths are schematic for presentation purposes.
         </desc>
         <defs>
           <clipPath id="training-mixture-reveal">
@@ -36,12 +36,18 @@
           <rect x="0" y="32" width="133.333" height="55" class="data-pretraining"/>
           <rect x="133.333" y="32" width="133.334" height="55" class="data-midtraining"/>
           <rect x="266.667" y="32" width="133.333" height="55" class="data-rl"/>
-          <path d="M0 134 H110 C130 134 140 152 160 152 H245 C265 152 275 189 295 189 H0 Z" class="data-pretraining"/>
           <path
-            d="M110 134 H400 V147 H295 C275 147 265 152 245 152 H160 C140 152 130 134 110 134 Z"
+            d="M0 134 H80 C100 134 110 152 130 152 H235 C255 152 265 189 285 189 H0 Z"
+            class="data-pretraining"
+          />
+          <path
+            d="M80 134 H400 V147 H285 C265 147 255 152 235 152 H130 C110 152 100 134 80 134 Z"
             class="data-midtraining"
           />
-          <path d="M245 152 C265 152 275 147 295 147 H400 V189 H295 C275 189 265 152 245 152 Z" class="data-rl"/>
+          <path
+            d="M235 152 C255 152 265 147 285 147 H400 V189 H285 C265 189 255 152 235 152 Z"
+            class="data-rl"
+          />
           <g class="training-band-labels" aria-hidden="true">
             <text x="66.667" y="65">Pretrain</text>
             <text x="200" y="65">Midtrain</text>
@@ -106,11 +112,13 @@
     Training complete
   </p>
   <figcaption id="training-animation-caption">
-    Staged training uses data sources sequentially; unified training allows their distributions to overlap and evolve.
-    The left panel illustrates these schedules, with schematic proportions and timing.
-    The right panel reports the best observed accuracy (pass@1, solid) and coverage (pass@16, dashed) within each total
-    compute budget across the tested unified and staged configurations.
-    Compute includes pretraining, midtraining, and RL; the initial pretraining period is compressed in the animation.
+    Staged training uses data sources sequentially; unified training allows their distributions to overlap and
+    evolve.
+    The left panel illustrates these schedules, with schematic proportions and phase widths.
+    RL begins at the compute budget of the earliest pre-RL evaluation plotted for each method.
+    The right panel reports the best observed accuracy (pass@1, solid) and coverage (pass@16, dashed) within
+    each total compute budget across a sweep of unified and staged configurations.
+    Compute includes pretraining, midtraining, and RL; animation speed varies across phases for readability.
   </figcaption>
 </figure>
 <!-- #endregion -->
