@@ -1,12 +1,30 @@
+<!--
+  Editable overview animation fragment, also embedded in index.html.
+  Keep both copies in sync; preserve the SVG geometry and animation data attributes.
+-->
+<!-- #region Overview animation -->
 <figure class="training-animation" id="training-animation" aria-labelledby="training-animation-caption">
   <div class="training-animation-panels">
     <div class="training-mixtures">
-      <p class="training-panel-heading">Illustrative data schedules</p>
-      <svg class="training-mixture-svg" viewBox="0 0 400 218" role="img" aria-labelledby="training-mixtures-title training-mixtures-description">
+      <p class="training-panel-heading">
+        Illustrative data schedules
+      </p>
+      <svg
+        class="training-mixture-svg"
+        viewBox="0 0 400 218"
+        role="img"
+        aria-labelledby="training-mixtures-title training-mixtures-description"
+      >
         <title id="training-mixtures-title">Staged and unified data schedules</title>
-        <desc id="training-mixtures-description">Staged training uses pretraining, midtraining, and reinforcement learning data in successive phases. Unified training mixes midtraining data with pretraining data and later with RL generations. The proportions and phase lengths are schematic.</desc>
+        <desc id="training-mixtures-description">
+          Staged training uses pretraining, midtraining, and reinforcement learning data in successive phases.
+          Unified training mixes midtraining data with pretraining data and later with RL generations.
+          The proportions and phase lengths are schematic.
+        </desc>
         <defs>
-          <clipPath id="training-mixture-reveal"><rect data-mixture-reveal x="0" y="0" width="400" height="218"/></clipPath>
+          <clipPath id="training-mixture-reveal">
+            <rect data-mixture-reveal x="0" y="0" width="400" height="218"/>
+          </clipPath>
         </defs>
         <text x="0" y="20" class="training-method staged">Staged training</text>
         <text x="0" y="122" class="training-method unified">Unified training</text>
@@ -19,7 +37,10 @@
           <rect x="133.333" y="32" width="133.334" height="55" class="data-midtraining"/>
           <rect x="266.667" y="32" width="133.333" height="55" class="data-rl"/>
           <path d="M0 134 H110 C130 134 140 152 160 152 H245 C265 152 275 189 295 189 H0 Z" class="data-pretraining"/>
-          <path d="M110 134 H400 V147 H295 C275 147 265 152 245 152 H160 C140 152 130 134 110 134 Z" class="data-midtraining"/>
+          <path
+            d="M110 134 H400 V147 H295 C275 147 265 152 245 152 H160 C140 152 130 134 110 134 Z"
+            class="data-midtraining"
+          />
           <path d="M245 152 C265 152 275 147 295 147 H400 V189 H295 C275 189 265 152 245 152 Z" class="data-rl"/>
           <g class="training-band-labels" aria-hidden="true">
             <text x="66.667" y="65">Pretrain</text>
@@ -34,7 +55,15 @@
           <rect x=".5" y="134.5" width="399" height="54"/>
           <path d="M133.333 32 V87 M266.667 32 V87"/>
         </g>
-        <line data-mixture-cursor x1="400" x2="400" y1="29" y2="91" class="training-mixture-cursor" visibility="hidden"/>
+        <line
+          data-mixture-cursor
+          x1="400"
+          x2="400"
+          y1="29"
+          y2="91"
+          class="training-mixture-cursor"
+          visibility="hidden"
+        />
         <text x="400" y="213" text-anchor="end" class="training-schematic-label">Training progresses →</text>
       </svg>
       <div class="training-data-legend" aria-label="Data sources">
@@ -44,9 +73,16 @@
       </div>
     </div>
     <div class="training-performance">
-      <p class="training-panel-heading">Best observed performance</p>
+      <p class="training-panel-heading">
+        Best observed performance
+      </p>
       <div class="training-performance-chart" data-training-plot>
-        <img src="assets/teaser_reasoning.svg" width="222" height="133" alt="The original Figure 1 plot: best observed reasoning accuracy and coverage within each compute budget. Unified training reaches higher accuracy and coverage at larger budgets."/>
+        <img
+          src="assets/teaser_reasoning.svg"
+          width="222"
+          height="133"
+          alt="The original Figure 1 plot: best observed reasoning accuracy and coverage within each compute budget. Unified training reaches higher accuracy and coverage at larger budgets."
+        />
       </div>
     </div>
   </div>
@@ -54,9 +90,27 @@
     <button type="button" data-training-toggle aria-label="Play training animation">Play</button>
     <button type="button" data-training-restart aria-label="Restart training animation">Restart</button>
     <label class="training-progress-label" for="training-progress">Training progress</label>
-    <input id="training-progress" data-training-progress type="range" min="0" max="1000" value="1000" step="1" aria-label="Training progress"/>
+    <input
+      id="training-progress"
+      data-training-progress
+      type="range"
+      min="0"
+      max="1000"
+      value="1000"
+      step="1"
+      aria-label="Training progress"
+    />
     <output data-training-compute for="training-progress">2.15 × 10¹⁹ FLOPs</output>
   </div>
-  <p class="training-animation-phase" data-training-phase hidden>Training complete</p>
-  <figcaption id="training-animation-caption">Staged training uses data sources sequentially; unified training allows their distributions to overlap and evolve. The left panel illustrates these schedules, with schematic proportions and timing. The right panel reports the best observed accuracy (pass@1, solid) and coverage (pass@16, dashed) within each total compute budget across the tested unified and staged configurations. Compute includes pretraining, midtraining, and RL; the initial pretraining period is compressed in the animation.</figcaption>
+  <p class="training-animation-phase" data-training-phase hidden>
+    Training complete
+  </p>
+  <figcaption id="training-animation-caption">
+    Staged training uses data sources sequentially; unified training allows their distributions to overlap and evolve.
+    The left panel illustrates these schedules, with schematic proportions and timing.
+    The right panel reports the best observed accuracy (pass@1, solid) and coverage (pass@16, dashed) within each total
+    compute budget across the tested unified and staged configurations.
+    Compute includes pretraining, midtraining, and RL; the initial pretraining period is compressed in the animation.
+  </figcaption>
 </figure>
+<!-- #endregion -->

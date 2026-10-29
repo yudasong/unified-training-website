@@ -10,6 +10,40 @@ The site is a static research article in HTML, CSS, and vanilla JavaScript. Edit
 the article and `style.css` for presentation.
 All figures are vector SVGs in `assets/`; the paper is `assets/paper.pdf`.
 
+### Finding and editing the text in VS Code
+
+Open this `website` folder in VS Code and edit **`index.html`**. It contains the
+full article; there is no template engine or build step. Each paragraph has its
+own block, with sentences on separate lines. Line breaks in the source do not
+create line breaks on the page.
+
+The file is divided into named `<!-- #region ... -->` blocks. Use the folding
+arrows in the gutter to collapse the animation or sections you are not editing.
+VS Code's **Fold All** and **Unfold All** commands are also useful. Search for a
+section title or its stable HTML ID:
+
+| What to edit | Find in `index.html` |
+| --- | --- |
+| Title, authors, affiliations, and project links | `paper-header` |
+| Left navigation links | `article-contents` |
+| Opening animation and its caption | `training-animation` |
+| Introductory paragraphs | `class="opening"` |
+| A unified likelihood formulation | `id="one-rule"` |
+| Midtraining across the full training pipeline | `id="same-data"` |
+| Accuracy and coverage under a total compute budget | `id="compute"` |
+| Retention of pretrained capabilities | `id="retention"` |
+| Heterogeneous midtraining data | `id="mixtures"` |
+| Scheduling midtraining data during RL | `id="schedules"` |
+| Continual learning after mathematical RL | `id="next-task"` |
+| Future directions | `id="looking-ahead"` |
+
+Within each section, edit the `<p>` paragraphs, `<li>` list items,
+`<figcaption>` captions, or `<aside class="takeaway">` summary. Keep the existing
+IDs and classes unless you also intend to change navigation or styling.
+The folder's `.vscode/settings.json` enables soft wrapping and two-space
+indentation for HTML when this folder is opened directly; it does not change
+your global VS Code settings or the manuscript's LaTeX configuration.
+
 Preview locally with:
 
 ```sh
