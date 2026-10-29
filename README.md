@@ -27,9 +27,11 @@ The audience is ML and LLM researchers. Retain the paper’s terminology and reu
 its wording where it already works. Shorten derivations and implementation detail
 without replacing precise concepts with lay explanations. Results sections should
 explain the motivation, comparison, finding, and implication, including material
-tradeoffs. Use labeled bullets for parallel comparisons, settings, and findings;
-keep the main argument and interpretation in connected prose. Avoid slogans, a
-long literature review, and narrating every plotted value.
+tradeoffs. Use bullets when they make parallel settings or distinct findings easier
+to compare; do not impose a list on every results section or invent a label for
+each sentence. Keep closely connected findings, the main argument, and
+interpretation in prose. Avoid slogans, a long literature review, and narrating
+every plotted value.
 
 ## Figure fidelity
 
