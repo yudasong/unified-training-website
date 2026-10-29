@@ -14,6 +14,7 @@ FILES = (
     "index.html",
     "style.css",
     "site.js",
+    "typography.js",
     "teaser-animation.css",
     "teaser-animation.js",
     "assets",

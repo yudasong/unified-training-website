@@ -52,6 +52,28 @@ python3 -m http.server 8765 --bind 127.0.0.1
 
 Open http://127.0.0.1:8765. No installation or build step is needed.
 
+### Paragraph typesetting
+
+Article paragraphs, list items, figure captions, and takeaway boxes use
+**tex-linebreak 0.9.0** on desktop to choose line breaks across each text block.
+Titles, author information, navigation, and animation labels keep their original
+layout. The typesetter tries whole words first, then permits
+hyphenation if needed to meet its spacing constraint. Only lowercase words of at
+least nine letters are eligible, with at least three letters on either side of
+a break; abbreviations and existing compounds stay intact. Layout falls back to
+whole words if it produces consecutive hyphenated lines or more than two in a
+paragraph. The text
+remains in `index.html`; no compilation is needed after editing. The bundled
+library is in `assets/vendor/tex-linebreak/`, and `typography.js` applies it after
+fonts load and recalculates when the column width changes. Mobile and print use
+normal browser wrapping.
+
+Compare the introduction at `index.html#opening` with
+`index.html?typesetting=browser#opening` (ordinary browser justification), or
+`index.html?typesetting=nohyphens#opening` (TeX layout without hyphens).
+Both URLs also work with the local HTTP preview. To disable TeX typesetting, remove
+the three typesetting script tags near the bottom of `index.html`.
+
 The editable source remains in this repository. The public site is hosted in the
 `unified-training/` folder of `yudasong/yudasong.github.io` on its `master` branch.
 After committing and pushing source changes here, publish with:
