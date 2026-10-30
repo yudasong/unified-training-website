@@ -8,7 +8,10 @@ Live site: https://yudasong.github.io/unified-training/
 
 The site is a static research article in HTML, CSS, and vanilla JavaScript. Edit `index.html` for
 the article and `style.css` for presentation.
-All figures are vector SVGs in `assets/`; the paper is `assets/paper.pdf`.
+All figures are vector SVGs in `assets/`. Paper links point to
+https://arxiv.org/abs/2610.40564; `assets/paper.pdf` retains the local copy.
+`assets/citation.bib` is the official export retrieved from
+https://arxiv.org/bibtex/2610.40564, displayed verbatim in the bottom BibTeX section.
 
 ### Finding and editing the text in VS Code
 
@@ -36,6 +39,7 @@ section title or its stable HTML ID:
 | Scheduling midtraining data during RL | `id="schedules"` |
 | Continual learning after mathematical RL | `id="next-task"` |
 | Future directions | `id="looking-ahead"` |
+| BibTeX citation | `id="bibtex"` |
 
 Within each section, edit the `<p>` paragraphs, `<li>` list items,
 `<figcaption>` captions, or `<aside class="takeaway">` summary. Keep the existing
