@@ -55,18 +55,21 @@ Open http://127.0.0.1:8765. No installation or build step is needed.
 ### Paragraph typesetting
 
 Article paragraphs, list items, figure captions, and takeaway boxes use
-**tex-linebreak 0.9.0** on desktop to choose line breaks across each text block.
+**tex-linebreak 0.9.0** on desktop and mobile to choose line breaks across each text block.
 Titles, author information, navigation, and animation labels keep their original
 layout. The typesetter tries whole words first, then permits
 hyphenation if needed to meet its spacing constraint. Only lowercase words of at
 least nine letters are eligible, with at least three letters on either side of
-a break; abbreviations and existing compounds stay intact. Layout falls back to
-whole words if it produces consecutive hyphenated lines or more than two in a
-paragraph. The text
+a break; abbreviations and existing compounds stay intact. If needed, a second
+pass limits hyphenation to words of at least twelve letters before falling back
+to whole words. It avoids too many hyphens (two per paragraph, increasing to
+roughly one per five lines for longer blocks). Consecutive hyphenated lines are
+avoided, with at most two allowed in narrow columns.
+The text
 remains in `index.html`; no compilation is needed after editing. The bundled
 library is in `assets/vendor/tex-linebreak/`, and `typography.js` applies it after
-fonts load and recalculates when the column width changes. Mobile and print use
-normal browser wrapping.
+fonts load and recalculates when the column width changes, including phone
+rotation. Print uses normal browser wrapping.
 
 Compare the introduction at `index.html#opening` with
 `index.html?typesetting=browser#opening` (ordinary browser justification), or
